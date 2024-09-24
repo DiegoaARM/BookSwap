@@ -1,6 +1,7 @@
 package exchageLibrary.service.impl;
 
 import exchageLibrary.model.dao.UserDao;
+import exchageLibrary.model.entity.Copy;
 import exchageLibrary.model.entity.User;
 import exchageLibrary.service.IUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,15 @@ public class UserImpl implements IUser {
         List<User> usersList = new ArrayList<>();
         usersIterable.forEach(usersList::add);
         return usersList;
+    }
+
+    public User findByEmail(String email){
+        Iterable<User> usersIterable = userDao.findAll();
+        for (User user : usersIterable) {
+            if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+        return null;
     }
 }

@@ -13,4 +13,6 @@ public interface IUser {
     void delete(User user);
 
     List<User> findAll();
+
+    User findByEmail(String email);
 }
