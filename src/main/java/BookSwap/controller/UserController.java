@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api")
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
 
     @Autowired
@@ -25,12 +26,12 @@ public class UserController {
     }
 
     @DeleteMapping(path = "user/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable String id) {
         userService.delete(userService.findById(id));
     }
 
     @GetMapping(path = "user/{id}")
-    public User findById(@PathVariable Integer id) {
+    public User findById(@PathVariable String id) {
         return userService.findById(id);
     }
 

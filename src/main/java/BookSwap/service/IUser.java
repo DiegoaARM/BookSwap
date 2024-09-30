@@ -8,7 +8,7 @@ public interface IUser {
 
     User save(User user);
 
-    User findById(Integer id);
+    User findById(String id);
 
     void delete(User user);
 

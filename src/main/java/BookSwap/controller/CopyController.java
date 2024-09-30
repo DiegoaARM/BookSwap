@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CopyController {
 
     @Autowired
@@ -45,8 +46,8 @@ public class CopyController {
     }
 
     @GetMapping(path = "copies/user/{id_user}")
-    public List<Copy> findByUser(@PathVariable Integer id_user){
-        return copyService.findByUser(  id_user);
+    public List<Copy> findByUser(@PathVariable String id_user){
+        return copyService.findByUser(id_user);
     }
 
 }

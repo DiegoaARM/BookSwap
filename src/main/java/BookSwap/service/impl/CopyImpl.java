@@ -57,7 +57,7 @@ public class CopyImpl implements ICopy {
     }
 
     @Override
-    public List<Copy> findByUser(Integer id_user){
+    public List<Copy> findByUser(String id_user){
         Iterable<Copy> copiesIterable = copyDao.findAll();
         List<Copy> copiesList = new ArrayList<>();
 
