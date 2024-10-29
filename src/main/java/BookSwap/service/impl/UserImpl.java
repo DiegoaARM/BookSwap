@@ -22,7 +22,7 @@ public class UserImpl implements IUser {
     }
 
     @Transactional(readOnly = true)
-    public User findById(Integer id) {
+    public User findById(String id) {
         return userDao.findById(id).orElse(null);
     }
 

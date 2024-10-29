@@ -16,5 +16,5 @@ public interface ICopy {
 
     List<Copy> findByBook(Integer id_book);
 
-    List<Copy> findByUser(Integer id_user);
+    List<Copy> findByUser(String id_user);
 }
