@@ -9,4 +9,6 @@ public interface IGenre {
     Genre findById(Integer id);
 
     List<Genre> findAll();
+
+    List<Genre> findGenresWithBooks();
 }

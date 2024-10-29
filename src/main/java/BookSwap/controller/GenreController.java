@@ -24,4 +24,9 @@ public class GenreController {
         return genreService.findAll();
     }
 
+    @GetMapping(path = "genresWithBooks")
+    public List<Genre> findGenresWithBooks(){
+        return genreService.findGenresWithBooks();
+    }
+
 }

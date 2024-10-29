@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GenreImpl implements IGenre {
@@ -30,6 +31,19 @@ public class GenreImpl implements IGenre {
         List<Genre> genresList = new ArrayList<>();
         genresIterable.forEach(genresList::add);
         return genresList;
+    }
+
+    @Override
+    @Transactional
+    public List<Genre> findGenresWithBooks() {
+        Iterable<Genre> genresIterable = genreDao.findAll();
+        List<Genre> genresWithBooks = new ArrayList<>();
+        for (Genre genre : genresIterable) {
+            if (genre.getBooksList() != null && !genre.getBooksList().isEmpty()) {
+                genresWithBooks.add(genre);
+            }
+        }
+        return genresWithBooks;
     }
 
 }
