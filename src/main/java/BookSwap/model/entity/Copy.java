@@ -1,10 +1,12 @@
 package BookSwap.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -42,5 +44,6 @@ public class Copy {
     @Column(name = "created_at")
     private Date created_at;
 
-
+    @OneToMany(mappedBy = "copy", cascade = CascadeType.MERGE)
+    private List<Copy_image> imagesList;
 }

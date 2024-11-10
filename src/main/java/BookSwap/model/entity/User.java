@@ -1,5 +1,6 @@
 package BookSwap.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,7 +18,7 @@ public class User {
 
     @Id
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Column(name = "username")
     private String username;
@@ -39,5 +40,12 @@ public class User {
     @JsonIgnoreProperties(value="user")
     private List<Copy> copiesList;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Notification> notificationsList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value="user")
+    private List<Notification> reviewsList;
 
 }

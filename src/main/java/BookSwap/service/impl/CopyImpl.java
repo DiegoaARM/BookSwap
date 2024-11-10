@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CopyImpl implements ICopy {
@@ -57,16 +58,17 @@ public class CopyImpl implements ICopy {
     }
 
     @Override
-    public List<Copy> findByUser(String id_user){
+    public List<Copy> findByUser(String id_user) {
         Iterable<Copy> copiesIterable = copyDao.findAll();
         List<Copy> copiesList = new ArrayList<>();
 
         for (Copy copy : copiesIterable) {
-            if (copy.getUser().getId() == (id_user)) {
+            if (Objects.equals(copy.getUser().getId(), id_user)) {
                 copiesList.add(copy);
             }
         }
         return copiesList;
     }
+
 
 }
