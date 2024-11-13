@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class GenreController {
 
     @Autowired

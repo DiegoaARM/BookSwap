@@ -1,5 +1,4 @@
 package BookSwap.security;
-/*
 
 import BookSwap.model.entity.User;
 import BookSwap.service.IUser;
@@ -22,9 +21,9 @@ import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
- */
+
 public class SecurityConfig {
-/*
+
     @Autowired
     private IUser userService; // Inyectamos el servicio de usuario
 
@@ -36,7 +35,9 @@ public class SecurityConfig {
                     registry.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2login -> {
-                    oauth2login.successHandler(new AuthenticationSuccessHandler() {
+                    oauth2login
+                            .loginPage("/homeLogged")
+                            .successHandler(new AuthenticationSuccessHandler() {
                         @Override
                         public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
                             // Este bloque se ejecuta cuando el login es exitoso
@@ -64,7 +65,7 @@ public class SecurityConfig {
                                 existingUser.setPicture(picture);
                                 userService.save(existingUser); // Actualizar el usuario
                             }
-                            response.sendRedirect("/");
+                            response.sendRedirect("http://localhost:5173/homeLogged");
                         }
 
                     });
@@ -73,5 +74,5 @@ public class SecurityConfig {
                 .build();
     }
 
- */
+
 }
