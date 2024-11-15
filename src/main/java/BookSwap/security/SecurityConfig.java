@@ -36,7 +36,7 @@ public class SecurityConfig {
                 })
                 .oauth2Login(oauth2login -> {
                     oauth2login
-                            .loginPage("/homeLogged")
+                            //.loginPage("/homeLogged")
                             .successHandler(new AuthenticationSuccessHandler() {
                         @Override
                         public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -65,7 +65,8 @@ public class SecurityConfig {
                                 existingUser.setPicture(picture);
                                 userService.save(existingUser); // Actualizar el usuario
                             }
-                            response.sendRedirect("http://localhost:5173/homeLogged");
+                            //response.sendRedirect("http://localhost:5173/homeLogged");
+                            response.sendRedirect("http://localhost:8080/home");
                         }
 
                     });
