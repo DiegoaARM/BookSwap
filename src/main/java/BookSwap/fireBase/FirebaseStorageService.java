@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.google.cloud.storage.*;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,25 @@ public class FirebaseStorageService {
         }
 
         return urls;
+    }
+
+    public void deleteFile(String fileUrl) {
+        try {
+            // Extraer el nombre del archivo de la URL
+            String filePath = fileUrl.replace("https://storage.googleapis.com/bookswap-8eb14.firebasestorage.app/", "");
+
+            // Crear el BlobId usando el bucket y el path
+            BlobId blobId = BlobId.of("bookswap-8eb14.firebasestorage.app", filePath);
+
+            // Eliminar el archivo
+            boolean deleted = storage.delete(blobId);
+
+            if (!deleted) {
+                throw new RuntimeException("Failed to delete file: " + fileUrl);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting file from Firebase: " + e.getMessage());
+        }
     }
 
     private String generateFileName(String originalFileName) {

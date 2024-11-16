@@ -1,5 +1,6 @@
 package BookSwap.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class Copy_image {
 
     @JoinColumn(name = "id_copy")
     @ManyToOne
+    @JsonBackReference
     private Copy copy;
 
     @Column(name = "picture")
