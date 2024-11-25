@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.google.cloud.storage.*;
 import java.io.IOException;
-import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +31,10 @@ public class FirebaseStorageService {
 
             storage.create(blobInfo, file.getBytes());
 
-            String url = String.format("https://storage.googleapis.com/%s/%s",
-                    "bookswap-8eb14.firebasestorage.app", "images/" + fileName);
+            // URL correcta para Firebase Storage
+            String url = String.format("https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media",
+                    "bookswap-8eb14.firebasestorage.app",
+                    URLEncoder.encode("images/" + fileName, StandardCharsets.UTF_8));
             urls.add(url);
         }
 

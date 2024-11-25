@@ -56,6 +56,9 @@ public class SecurityConfig {
                             .requestMatchers("/api/**").permitAll()
                             .requestMatchers(HttpMethod.POST, "/api/**").permitAll()  // Específica el método POST
                             .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+                            .requestMatchers(HttpMethod.PUT, "/api/**").permitAll()
+                            .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
+                            .requestMatchers("/logout").permitAll()
                             .anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2login -> {
@@ -94,6 +97,18 @@ public class SecurityConfig {
 
                     });
                 })
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            response.setStatus(HttpServletResponse.SC_OK);
+                            response.getWriter().write("{\"message\":\"Logout successful\"}");
+                            response.setHeader("Content-Type", "application/json");
+                            response.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+                            response.setHeader("Access-Control-Allow-Credentials", "true");
+                        })
+                        .clearAuthentication(true)
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID", "XSRF-TOKEN"))
                 .build();
     }
 
