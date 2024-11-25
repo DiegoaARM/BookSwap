@@ -15,4 +15,5 @@ public interface IUser {
     List<User> findAll();
 
     User findByEmail(String email);
+
 }

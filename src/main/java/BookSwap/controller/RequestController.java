@@ -2,6 +2,7 @@ package BookSwap.controller;
 
 import BookSwap.model.entity.Notification;
 import BookSwap.model.entity.Request;
+import BookSwap.model.entity.User;
 import BookSwap.service.INotification;
 import BookSwap.service.IRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,16 @@ public class RequestController {
     @GetMapping(path = "requests")
     public List<Request> findAll(){
         return requestService.findAll();
+    }
+
+    @GetMapping(path = "request/requester")
+    public User findRequester(@RequestBody Request request) {
+        return requestService.findRequester(request);
+    }
+
+    @GetMapping(path = "request/askedFor")
+    public User findAskedFor(@RequestBody Request request) {
+        return requestService.findAskedFor(request);
     }
 
 }
