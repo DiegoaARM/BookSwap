@@ -20,6 +20,7 @@ public class RequestImpl implements IRequest {
 
     @Autowired
     private RequestDao requestDao;
+    @Autowired
     private UserDao userDao;
 
     @Transactional
