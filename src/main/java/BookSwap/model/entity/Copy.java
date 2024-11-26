@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "copies")
-public class    Copy {
+public class Copy {
 
     @Id
     @Column(name = "id")

@@ -39,14 +39,9 @@ public class RequestController {
         return requestService.findAll();
     }
 
-    @GetMapping(path = "request/requester")
-    public User findRequester(@RequestBody Request request) {
-        return requestService.findRequester(request);
-    }
-
-    @GetMapping(path = "request/askedFor")
-    public User findAskedFor(@RequestBody Request request) {
-        return requestService.findAskedFor(request);
+    @GetMapping(path = "requests/user/{id}")
+    public List<Request> RequestsUser(@PathVariable String id) {
+        return requestService.RequestsUser(id);
     }
 
 }

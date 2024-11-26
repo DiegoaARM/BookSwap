@@ -3,6 +3,7 @@ package BookSwap.service;
 import BookSwap.model.entity.Request;
 import BookSwap.model.entity.Usage;
 import BookSwap.model.entity.User;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -16,7 +17,5 @@ public interface IRequest {
 
     List<Request> findAll();
 
-    User findRequester(Request request);
-
-    User findAskedFor(Request request);
+    List<Request> RequestsUser(String id);
 }
